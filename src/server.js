@@ -8,8 +8,13 @@ import limiter from './lib/express_rate_limit.js';
 import { connectToDatabase, disconnectFromDatabase } from './lib/mongoose.js';
 import { logger } from './lib/winston.js';
 import routes from './router/index.js';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './docs/swagger-output.json' with { type: 'json' }
+
 
 const app = express();
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const corsOptions = {
   origin: (origin, callback) => {

@@ -1,0 +1,87 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Backend Base",
+    "description": "Auto-generated from Postman collection"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "Login",
+        "tags": ["Authentication"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": { "type": "string", "example": "dhanasekaran@mailinator.com" },
+                "password": { "type": "string", "example": "Test@123" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Login successful" }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "Register",
+        "tags": ["Authentication"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": { "type": "string", "example": "dhanasekaran@mailinator.com" },
+                "password": { "type": "string", "example": "Test@123" },
+                "role": { "type": "string", "example": "admin" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Registration successful" }
+        }
+      }
+    },
+    "/auth/refresh-token": {
+      "post": {
+        "summary": "Refresh Token",
+        "tags": ["Authentication"],
+        "responses": {
+          "200": { "description": "Token refreshed" }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "Logout",
+        "tags": ["Authentication"],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": { "description": "Logged out successfully" }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Enter your bearer token in the format **Bearer &lt;token&gt;**"
+    }
+  }
+}
